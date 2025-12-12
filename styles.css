@@ -8,7 +8,7 @@
   --muted: #c7cbe6;
   --primary: #4f8cff; /* Azure blue */
   --primary-contrast: #081225;
-  --accent: #f5b301; /* gold accent */
+  --accent: #740b10; /* gold accent */
   --success: #27ae60;
   --shadow: 0 12px 30px rgba(0,0,0,.25);
 }
@@ -22,7 +22,7 @@
   --muted: #555b78;
   --primary: #325df6;
   --primary-contrast: #ffffff;
-  --accent: #c28800;
+  --accent: #d8afb3;
   --shadow: 0 12px 24px rgba(21, 30, 60, .1);
 }
 
@@ -136,3 +136,246 @@ a { color: var(--primary); text-decoration: none; }
 
 /* Micro animations */
 .car-card:hover { outline: 1px solid rgba(255,255,255,.12); transform: translateY(-2px); transition: transform .15s ease, outline .15s ease; }
+
+.site-footer-advanced{
+  background:#050505;
+  color:#cbd5e1;
+  margin-top:80px;
+  border-top:2px solid #7B0323;
+}
+
+.footer-cta{
+  background:linear-gradient(135deg, #7B0323, #2a020d);
+  padding:40px 0;
+}
+
+.cta-flex{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.footer-cta h2{
+  margin:0;
+  color:#fff;
+}
+
+.footer-cta p{
+  margin-top:6px;
+  color:rgba(255,255,255,.9);
+}
+
+.cta-actions{
+  display:flex;
+  gap:12px;
+}
+
+.footer-grid-advanced{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:28px;
+  padding:50px 20px 30px;
+}
+
+.footer-grid-advanced h4{
+  margin-bottom:10px;
+  color:#fff;
+}
+
+.footer-grid-advanced ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.footer-grid-advanced li{
+  margin-bottom:8px;
+}
+
+.footer-grid-advanced a{
+  color:#cbd5e1;
+  text-decoration:none;
+}
+
+.footer-grid-advanced a:hover{
+  color:#fff;
+}
+
+.footer-text{
+  max-width:280px;
+  line-height:1.6;
+}
+
+.social-row{
+  display:flex;
+  gap:12px;
+  margin-top:10px;
+}
+
+.social-row a{
+  background:#1a1a1a;
+  padding:8px 12px;
+  border-radius:8px;
+  color:#fff;
+  font-weight:600;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.social-row a:hover{
+  background:#7B0323;
+}
+
+.footer-legal{
+  text-align:center;
+  padding:16px;
+  border-top:1px solid rgba(255,255,255,.08);
+  color:#94a3b8;
+  font-size:14px;
+}
+
+
+/* ===== MOBILE NAV FIX ===== */
+
+.nav {
+  position: relative;
+  z-index: 1000;
+}
+
+#navToggle {
+  display: none;
+  font-size: 22px;
+}
+
+/* Desktop */
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  #navToggle {
+    display: inline-flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #050505;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+    gap: 22px;
+
+    /* ✅ Hidden by default */
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: .3s ease;
+  }
+
+  /* ✅ When Open */
+  .nav-links.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .actions {
+    display: none;
+  }
+}
+
+/* ====== PRE-FOOTER ====== */
+.pre-footer {
+  background: linear-gradient(180deg, #0b0d12, #0f1117);
+  padding: 4rem 1.5rem;
+  color: #fff;
+}
+
+.trust-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.trust-strip h3 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.trust-strip p {
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+.why-us {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.why-us h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.why-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.final-cta {
+  text-align: center;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 3rem 2rem;
+  border-radius: 18px;
+}
+
+.final-cta h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.final-cta p {
+  opacity: 0.75;
+  margin-bottom: 2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ====== SCROLL REVEAL ====== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
