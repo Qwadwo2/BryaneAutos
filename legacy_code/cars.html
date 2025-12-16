@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fleet — Bryane Autos</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* small page-specific refinements to keep showroom polish */
+    .showroom-hero { padding: 3.2rem 0 2rem; text-align: left; }
+    .controls { display:flex; gap: .8rem; align-items:center; margin-bottom:1rem; flex-wrap:wrap; }
+    .controls .search { flex:1 1 320px; }
+    .controls select, .controls input { padding:.6rem .8rem; border-radius:12px; border:1px solid rgba(255,255,255,.08); background:var(--surface); color:var(--text); }
+    #showroomGrid { display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; }
+    @media (max-width:900px){ #showroomGrid { grid-template-columns: repeat(2,1fr);} }
+    @media (max-width:600px){ #showroomGrid { grid-template-columns: 1fr; } .controls{flex-direction:column;align-items:stretch} }
+   .showroom-card {  opacity: 0;transform: translateY(50px) scale(0.94); transition: opacity 1.2s ease, transform 1.25s cubic-bezier(0.22, 1, 0.36, 1); filter: blur(6px);}
+   .showroom-card.revealed { opacity: 1; transform: translateY(0) scale(1); filter: blur(0);}
+
+    .showroom-media { height:160px; overflow:hidden; border-radius:12px; display:grid; place-items:center; background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.16)); }
+    .showroom-media img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .card-body { padding:.8rem 0; display:flex; gap:.6rem; flex-direction:column; }
+    .car-meta { display:flex; justify-content:space-between; align-items:center; gap:.4rem; }
+    .car-specs { color:var(--muted); font-size:.88rem; display:flex; gap:.5rem; flex-wrap:wrap; }
+    .btn-ghost.small { padding:.45rem .6rem; border-radius:10px; font-weight:600; font-size:.9rem; }
+    .modal-backdrop{ position:fixed; inset:0; display:grid; place-items:center; background:rgba(3,6,12,.6); z-index:9999; padding:1rem; }
+    .modal { width:min(740px,100%); border-radius:14px; background:var(--surface); padding:1.2rem; box-shadow:var(--shadow); color:var(--text); }
+    .modal h3{ margin:0 0 .6rem; }
+    .modal .row{ display:flex; gap:1rem; align-items:flex-start; }
+    .modal img{ width:45%; border-radius:10px; height:220px; object-fit:cover; }
+    .modal .meta{ flex:1; }
+    .sentinel{ height:2px; }
+    .small-muted{ color:var(--muted); font-size:.9rem; }
+  </style>
+</head>
+<body>
+  <!-- header / nav stays visually consistent -->
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="logo" href="index.html">
+        <img src="logo.png" alt="Bryane Autos" style="width:60px; height:auto;">
+      </a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <svg width="22" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a class="is-active" href="cars.html">Cars</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="showroom-hero">
+      <h1 style="margin:0 0 .25rem;">Our Fleet — Executive Showroom</h1>
+      <p class="small-muted" style="margin:0 0 .8rem;">Quietly curated. Carefully maintained. Scroll to explore our vehicles.</p>
+
+      <div class="controls" role="region" aria-label="Car controls">
+        <input class="search" id="searchInput" type="search" placeholder="Search by model, e.g., 'Corolla', 'V8', 'Fortuner'">
+        <select id="classFilter" aria-label="Filter by class">
+          <option value="all">All classes</option>
+          <option value="economy">Economy</option>
+          <option value="executive">Executive</option>
+          <option value="suv">SUV</option>
+        </select>
+        <select id="sortSelect" aria-label="Sort by">
+          <option value="featured">Featured</option>
+          <option value="price-asc">Price — low to high</option>
+          <option value="price-desc">Price — high to low</option>
+          <option value="name-asc">Name A–Z</option>
+        </select>
+        <div class="small-muted" id="resultCount" aria-live="polite">Loading...</div>
+      </div>
+
+      <div id="showroomGrid" aria-live="polite"></div>
+      <div id="sentinel" class="sentinel" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <!-- details modal (invisible initially) -->
+  <div id="carModal" style="display:none;" aria-hidden="true"></div>
+
+  <footer class="site-footer" style="margin-top:2rem;">
+    <div class="legal">© <span id="yearFooter"></span> Bryane Autos</div>
+  </footer>
+
+  <!-- scripts: load core cars data, then showroom script -->
+  <script src="cars-page.js" defer></script>
+  <script src="script.js" defer></script>
+
+</body>
+</html>
